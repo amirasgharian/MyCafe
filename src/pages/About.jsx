@@ -1,11 +1,9 @@
-import aboutPic from "../Img/aboutPic.jpg";
-
 function About() {
   return (
     <div className="container my-4">
       <div className="text-center">
         <img
-          src={aboutPic}
+          src="/Img/aboutPic.jpg"
           alt="عکس محیط کافه"
           className="img-fluid rounded shadow"
           style={{ maxHeight: "400px"  }}
