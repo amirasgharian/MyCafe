@@ -8,13 +8,13 @@ import { href } from "react-router-dom";
 function Cart() {
 
     const {cartItems ,resetLocalStorage} = useContext(shopContext)
-    let isInCart ;
-    if(cartItems?.length > 0)
-        isInCart = true ;
+    
+    const isInCart =  cartItems?.reduce((sum,item)=>sum + item.count , 0)
+    console.log(isInCart)
 return (
     <React.Fragment>
         <h2>سبد خرید</h2>
-        {cartItems?.length === 0 ? (<p>سبد خرید خالی است</p>) : (
+        {isInCart == 0  ? (<p>سبد خرید خالی است</p>) : (
         <div className="row">
             {products.map((p)=>
             {
@@ -24,7 +24,7 @@ return (
         )}
         </div>)}
         {
-          isInCart &&  <button className="btn btn-warning p-1 m-1" onClick={resetLocalStorage}>reset</button>
+          isInCart > 0 &&  <button className="btn btn-warning p-1 m-1" onClick={resetLocalStorage}>حذف سبد خرید</button>
         }
     </React.Fragment>
 );
