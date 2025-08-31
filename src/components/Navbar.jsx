@@ -39,7 +39,7 @@ function Navbar() {
               <Link className="nav-link" to="/cart">
                 {countIcon > 0 && (
                   <span className="badge rounded-pill bg-warning text-white ms-2">
-                    {countIcon}
+                    {countIcon.toLocaleString("fa-IR")}
                   </span>
                 )}
                 سبد خرید

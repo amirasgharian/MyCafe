@@ -10,8 +10,16 @@ function Cart() {
     const {cartItems ,resetLocalStorage} = useContext(shopContext)
     
     const isInCart =  cartItems?.reduce((sum,item)=>sum + item.count , 0)
-    console.log(isInCart)
-return (
+    const totalCost = cartItems?.reduce((sum, item) => 
+    {
+      const product = products.find(p => p.id === item.id);
+      if (product)
+      {
+        return sum + (product.price * item.count);
+      }
+      return sum;
+    }, 0);
+    return (
     <React.Fragment>
         <h2>سبد خرید</h2>
         {isInCart == 0  ? (<p>سبد خرید خالی است</p>) : (
@@ -24,7 +32,15 @@ return (
         )}
         </div>)}
         {
-          isInCart > 0 &&  <button className="btn btn-warning p-1 m-1" onClick={resetLocalStorage}>حذف سبد خرید</button>
+          isInCart > 0 && 
+          <React.Fragment>
+            <div className="container">
+                <h4 className="w-100 p-2 bg-dark text-light text-center">
+                مجموع : {totalCost.toLocaleString("fa-IR")} تومان
+                </h4>
+            </div>
+            <button className="btn btn-warning p-1 m-1" onClick={resetLocalStorage}>حذف سبد خرید</button>
+        </React.Fragment>
         }
     </React.Fragment>
 );

@@ -10,9 +10,9 @@ return (
     <div className="card-body">
         <img src={product.img} className="card-img-top product-img" alt={product.name} />
         <h5 className="card-title mt-2 " >{product.name}</h5>
-        <p className="card-text">قیمت: {product.price} تومان</p>
+        <p className="card-text">قیمت: {product.price.toLocaleString("fa-IR")} تومان</p>
         <button className="btn btn-primary btn-sm" onClick={() => addToCart(product.id)}>+</button>
-        <span className='mx-1'>{cartItems?.filter((item)=>item.id===product.id)[0]?.count}</span>
+        <span className='mx-1'>{cartItems?.filter((item)=>item.id===product.id)[0]?.count.toLocaleString("fa-IR")}</span>
         { isInCart && 
         <button className="btn btn-primary btn-sm" onClick={() => removeFromCart(product.id)}>-</button>
         }
